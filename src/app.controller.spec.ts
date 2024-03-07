@@ -19,4 +19,10 @@ describe('AppController', () => {
       expect(appController.getHello()).toBe('Hello Nest!');
     });
   });
+
+  describe('sayHi', () => {
+    it('should return "Hi~ i am a nest student"', () => {
+      expect(appController.sayHi()).toBe('Hi~ i am a nest student');
+    });
+  });
 });
