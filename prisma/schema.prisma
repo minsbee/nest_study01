@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Notes {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  createdAt DateTime @db.Date
+  title     String
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  authorId  String   @db.ObjectId
+  content   String
+  createdAt DateTime @db.Date
+  published Boolean
+  title     String
+  updatedAt DateTime @db.Date
+  viewCount BigInt
+}
+
+model User {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  name  String
+}
+
+model Movies {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  director  String
+  year      Int
+  createdAt DateTime @db.Date
+  updatedAt DateTime @db.Date
+}
