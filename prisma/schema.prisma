@@ -36,6 +36,6 @@ model Movies {
   title     String
   director  String
   year      Int
-  createdAt DateTime @db.Date
-  updatedAt DateTime @db.Date
+  createdAt DateTime? @db.Date
+  updatedAt DateTime? @db.Date
 }

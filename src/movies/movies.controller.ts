@@ -1,7 +1,10 @@
 import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Movies as MovieModel } from '@prisma/client';
+import { MoviesService } from './movies.service';
 
 @Controller('movies')
 export class MoviesController {
+    constructor(private readonly moviesService: MoviesService) {}
 
     @Get()
     getAllMovies(): string {
@@ -23,9 +26,9 @@ export class MoviesController {
 
 
     @Post('/create')
-    createMovie(@Body() movieData)  {
+    createMovie(@Body() movieData): Promise<MovieModel>  {
         console.log(movieData);
-        return ;
+        return this.moviesService.createMovie(movieData);
     }
 
     @Post('/register-movie')
