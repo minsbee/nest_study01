@@ -7,10 +7,16 @@ export class MoviesService {
     constructor(private prisma: PrismaService) {}
     
     async createMovie(data: Prisma.MoviesCreateInput) {
-        const MovieData = await this.prisma.movies.create({
-            data,
+        const createdAt = new Date();
+        const createdData = {
+            ...data,
+            createdAt: createdAt,
+        };
+
+        const movieData = await this.prisma.movies.create({
+            data: createdData,
         });
 
-        return MovieData;
+        return movieData;
     };
 }
